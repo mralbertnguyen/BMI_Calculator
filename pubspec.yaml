@@ -46,6 +46,8 @@ flutter:
    - lib/src/assets/images/effect_gradiant.png
    - lib/src/assets/images/image_personal_splash.png
    - lib/src/assets/icons/ic_skip.png
+   - lib/src/assets/icons/ic_back.png
+   - lib/src/assets/icons/ic_refresh.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
 
