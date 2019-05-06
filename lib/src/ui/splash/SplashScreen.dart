@@ -45,7 +45,7 @@ class SplashScreen extends BaseScreen {
             // Line 1: Title of
             _lineTitle(),
             _lineContent(),
-            _lineBottom()
+            _lineBottom(context)
           ],
         ),
       ),
@@ -85,11 +85,11 @@ class SplashScreen extends BaseScreen {
   }
 
   /// Line dot and skip button
-  Widget _lineBottom() {
+  Widget _lineBottom(BuildContext context) {
     return Container(
       decoration: new BoxDecoration(
-        // color: Colors.red
-      ),
+          // color: Colors.red
+          ),
       width: width,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -97,7 +97,7 @@ class SplashScreen extends BaseScreen {
           // dots
           _dotsGroup(),
           // button skip
-          _skipButton(),
+          _skipButton(context),
         ],
       ),
     );
@@ -113,16 +113,16 @@ class SplashScreen extends BaseScreen {
   }
 
   /// Skip Button
-  Widget _skipButton() {
+  Widget _skipButton(BuildContext context) {
     return Container(
       width: width * 0.2,
       decoration: new BoxDecoration(
-        // color: Colors.pink,
-      ),
+          // color: Colors.pink,
+          ),
       child: GestureDetector(
         onTap: () {
           // Tap in skip
-          print("Tap on skip");
+          _changeScreen(context);
         },
         child: new Row(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -170,5 +170,10 @@ class SplashScreen extends BaseScreen {
           image: DecorationImage(
               image: AssetImage(PATH_IMG_UNDER), fit: BoxFit.cover)),
     );
+  }
+
+  /// Function change screen
+  Widget _changeScreen(BuildContext context) {
+    pushReplaceScreen(context, SCREEN_DIARY);
   }
 }

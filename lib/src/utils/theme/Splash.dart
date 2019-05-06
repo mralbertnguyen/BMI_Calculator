@@ -29,6 +29,7 @@ const String PATH_IC_SKIP = 'lib/src/assets/icons/ic_skip.png';
 const String TITLE = "Ideal for the health conscious";
 const String CONTENT = "Keep your body at glance.";
 const String SKIP = "Skip";
+const String SCREEN_DIARY = "./diary";
 
 /// Font size
 const double FONTSIZE_CONTENT = 32;
