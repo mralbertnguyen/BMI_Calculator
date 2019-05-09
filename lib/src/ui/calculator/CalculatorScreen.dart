@@ -20,6 +20,9 @@ class CalculatorScreen extends BaseScreen {
           /// Form choose male or female
           _formSetMaleOrFemal(context),
 
+          /// List content info
+          _listInfo(context),
+
           /// Button
           _buttonCalculator(context)
         ],
@@ -66,85 +69,124 @@ class CalculatorScreen extends BaseScreen {
     double WIDTH_ITEM = MediaQuery.of(context).size.height * 0.2;
     double HEIGHT_ITEM = MediaQuery.of(context).size.height * 0.2;
     double MARGIN_ITEM = 10.0;
-    return new Container(
-      height: HEIGHT_ITEM,
-      width: WIDTH_ITEM,
-      decoration: new BoxDecoration(
-        color: Colors.black,
-      ),
-      child: new Row(
-        children: <Widget>[
-          new Expanded(
-            flex: 1,
-            child: Container(
-              margin: new EdgeInsets.only(
-                  top: MARGIN_ITEM,
-                  bottom: MARGIN_ITEM,
-                  left: marginLeft,
-                  right: marginRight),
-              alignment: Alignment.center,
-              decoration: new BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(10.0)),
-              child: new Center(
-                child: new Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    /// Icon
-                    new Container(
-                        height: HEIGHT_ITEM * 0.3,
-                        width: HEIGHT_ITEM * 0.3,
-                        decoration: BoxDecoration(color: Colors.pink)),
+    return InkWell(
+      onTap: () {
+        //Pressed choose item
+        print("Choose sex");
+      },
+      child: Opacity(
+        opacity: 0.1,
+        child: new Container(
+          height: HEIGHT_ITEM,
+          width: WIDTH_ITEM,
+          decoration: new BoxDecoration(
+            color: Colors.black,
+          ),
+          child: new Row(
+            children: <Widget>[
+              new Expanded(
+                flex: 1,
+                child: Container(
+                  margin: new EdgeInsets.only(
+                      top: MARGIN_ITEM,
+                      bottom: MARGIN_ITEM,
+                      left: marginLeft,
+                      right: marginRight),
+                  alignment: Alignment.center,
+                  decoration: new BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(10.0)),
+                  child: new Center(
+                    child: new Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        /// Icon
+                        new Container(
+                          height: HEIGHT_ITEM * 0.3,
+                          width: HEIGHT_ITEM * 0.3,
+                          decoration: BoxDecoration(color: Colors.pink),
+                          child: new Image.asset(
+                            path,
+                            color: Colors.white,
+                          ),
+                        ),
 
-                    /// Text
-                    new Container(
-                      margin: EdgeInsets.only(top: 10),
-                      child: new Text(
-                        text,
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    )
-                  ],
+                        /// Text
+                        new Container(
+                          margin: EdgeInsets.only(top: 10),
+                          child: new Text(
+                            text,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          )
-        ],
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
 
   ///
   /// List basic infomations of user
-  ///
+  Widget _listInfo(BuildContext context) {
+    double HEIGHT_LIST = MediaQuery.of(context).size.height * 0.5;
+    double WIDGHT_LIST = MediaQuery.of(context).size.width * 0.9;
+    return new Container(
+      height: HEIGHT_LIST,
+      width: WIDGHT_LIST,
+      decoration: new BoxDecoration(color: Colors.purpleAccent),
+    );
+  }
+
+  Widget _itemListInfo(BuildContext context){
+    return Card(
+      child: Container(
+        child: Row(
+          ///
+        ),
+      ),
+    );
+  }
+
   ///
   /// Button calculator
   ///
   Widget _buttonCalculator(BuildContext context) {
-    double heightViewButton = MediaQuery.of(context).size.height * 0.12;
+    double heightViewButton = MediaQuery.of(context).size.height * 0.07;
     double widthViewButton = MediaQuery.of(context).size.width * 0.9;
-    return GestureDetector(
-      onTap:(){
+    return InkWell(
+      onTap: () {
         print("Press button");
       },
       child: Container(
-        height: heightViewButton,
+        margin: EdgeInsets.only(top: 20),
         width: widthViewButton,
-        padding: EdgeInsets.all(10),
-        margin: EdgeInsets.only(top:  10),
+        height: heightViewButton,
         decoration: new BoxDecoration(
-            image: DecorationImage(
+            color: Colors.red, borderRadius: BorderRadius.circular(31)),
+        child: Stack(
+          alignment: Alignment.center,
+          children: <Widget>[
+            new Image(
+              width: widthViewButton,
+              height: heightViewButton,
+              fit: BoxFit.fill,
               image: AssetImage("lib/src/assets/images/br_btn.png"),
             ),
-            borderRadius: BorderRadius.circular(10)),
-            child: Center(
+            //  Background
+            new Center(
               child: new Text(
                 "Calculate your BMI",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20
-                )),
-            ),
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
