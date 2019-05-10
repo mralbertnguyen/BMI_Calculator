@@ -4,7 +4,8 @@ import "package:bmicalculator/src/utils/theme/index.dart";
 abstract class BaseScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return MaterialApp(
+      home: Container(
       decoration: initBackground(),
       child: GestureDetector(
         onTap: () {
@@ -25,6 +26,7 @@ abstract class BaseScreen extends StatelessWidget {
           primary: setPrimary(context),
         ),
       ),
+    ),
     );
   }
 
@@ -32,6 +34,7 @@ abstract class BaseScreen extends StatelessWidget {
     return BoxDecoration(
         image: DecorationImage(image: AssetImage(PATH_BR), fit: BoxFit.cover));
   }
+  
   // Title widget
   String initTitle() {
     return null;
