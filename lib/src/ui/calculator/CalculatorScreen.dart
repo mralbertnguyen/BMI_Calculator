@@ -15,7 +15,7 @@ class CalculatorScreen extends BaseScreen {
       child: Column(
         children: <Widget>[
           /// Header
-          HeaderWidget(size, "Weight Diary", "BMI Calculator", "./diary",
+          HeaderWidget("Weight Diary", "BMI Calculator", "./diary",
               PATH_IC_REFRESH, () {
             print("Press button function");
           }),

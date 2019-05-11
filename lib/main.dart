@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // Import screens
 import 'package:bmicalculator/src/ui/splash/SplashScreen.dart';
 import 'package:bmicalculator/src/ui/calculator/CalculatorScreen.dart';
+import 'package:bmicalculator/src/ui/diary/DiaryScreen.dart';
 Size size;
 void main() => runApp(
   
@@ -11,7 +12,8 @@ void main() => runApp(
     initialRoute: './diary',
     routes: {
       './splash' : (context)=> SplashScreen(),
-      './diary' : (context)=> CalculatorScreen(),
+      './calculator' : (context)=> CalculatorScreen(),
+      './diary' : (context) => DiaryScreen()
     },
   )
 );

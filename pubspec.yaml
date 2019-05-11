@@ -49,10 +49,13 @@ flutter:
    - lib/src/assets/icons/ic_skip.png
    - lib/src/assets/icons/ic_back.png
    - lib/src/assets/icons/ic_refresh.png
+   - lib/src/assets/images/btn_add.png
    - lib/src/assets/icons/ic_male.png
    - lib/src/assets/icons/ic_female.png
    - lib/src/assets/images/btn_minus.png
    - lib/src/assets/images/btn_plus.png
+   - lib/src/assets/images/br_goal.png
+   - lib/src/assets/images/br_current.png
    
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.

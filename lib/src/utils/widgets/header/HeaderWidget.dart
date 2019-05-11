@@ -6,7 +6,6 @@ import './HeaderStyle.dart';
 
 class HeaderWidget extends StatelessWidget {
   /// Required parameters
-  final Size size;
   final String title;
   final String content;
   final String nameScreenBack;
@@ -16,7 +15,7 @@ class HeaderWidget extends StatelessWidget {
   double widthScreen;
   double heightScreen;
 
-  HeaderWidget(this.size, this.title, this.content, this.nameScreenBack,
+  HeaderWidget(this.title, this.content, this.nameScreenBack,
       this.iconFunctionButton, this.behaviorWhenPressButton);
 
   @override
