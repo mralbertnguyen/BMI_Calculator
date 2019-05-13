@@ -82,6 +82,7 @@ class HeaderWidget extends StatelessWidget {
             onTap: () {
               /// pressed back button
               ///  - back to screen with screen name
+              Navigator.of(context).pushReplacementNamed(nameScreenBack);
             },
             child: Image.asset(PATH_IC_BACK),
           ),

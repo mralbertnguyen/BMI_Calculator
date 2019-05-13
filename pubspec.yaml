@@ -50,6 +50,8 @@ flutter:
    - lib/src/assets/images/br_btn.png
    - lib/src/assets/icons/ic_skip.png
    - lib/src/assets/icons/ic_back.png
+   - lib/src/assets/icons/ic_arrow_up.png
+   - lib/src/assets/icons/ic_arrow_down.png
    - lib/src/assets/icons/ic_refresh.png
    - lib/src/assets/images/btn_add.png
    - lib/src/assets/icons/ic_male.png
