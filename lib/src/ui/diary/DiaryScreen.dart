@@ -184,8 +184,9 @@ class DiaryScreen extends BaseScreen {
     return Container(
       width: (widthScreen * 0.9) * 0.5,
       height: heightScreen * 0.2,
-      decoration: BoxDecoration(color: Colors.white
-          // image: DecorationImage(image: AssetImage(_pathBr))
+      decoration: BoxDecoration(
+        // color: Colors.white
+          image: DecorationImage(image: AssetImage(_pathBr))
           ),
       padding: EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 20),
       child: Stack(
@@ -214,9 +215,9 @@ class DiaryScreen extends BaseScreen {
       width: (widthScreen * 0.9) * 0.5,
       height: heightScreen * 0.2,
       decoration: BoxDecoration(
-        // image: DecorationImage(
-        //   // image: AssetImage(_pathBr)
-        // ),
+        image: DecorationImage(
+          image: AssetImage(_pathBr)
+        ),
         color: Colors.tealAccent
         ),
       child: Stack(
