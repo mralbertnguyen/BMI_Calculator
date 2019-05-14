@@ -2,32 +2,34 @@ import 'package:bmicalculator/src/base/ui/BaseScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:bmicalculator/src/utils/widgets/index.dart';
 import 'package:flutter_circular_chart/flutter_circular_chart.dart';
+import 'package:bmicalculator/src/utils/string/index.dart';
+import 'package:bmicalculator/src/models/ModelItemDiary.dart';
+import 'package:bmicalculator/src/utils/string/Calculator.dart';
 
 class DiaryScreen extends BaseScreen {
   double widthScreen = 0.0;
   double heightScreen = 0.0;
 
-  double PADDING_PARENT_SCREEN = 30;
+  double widthParent = 0;
+  double heightParent = 0;
 
   final List<Widget> _contentList = [];
-  final Color colorTxtGoalAndValue = Color.fromARGB(40, 54, 65, 100);
-  final Color colorTxtKg = Color.fromARGB(114, 144, 157, 100);
-  final String PATH_IC_PLUS = "lib/src/assets/images/btn_add.png";
-  final String pathArrowUp = "lib/src/assets/icons/ic_arrow_up.png";
-  final String pathArrowDown = "lib/src/assets/icons/ic_arrow_down.png";
 
   @override
   Widget onInitBody(BuildContext context) {
     // init item into list widgets
 
-    // Get width height
+    // // Get width height
     widthScreen = MediaQuery.of(context).size.width;
     heightScreen = MediaQuery.of(context).size.height;
+
+    widthParent = widthScreen * factorWidthParent;
+    heightParent = heightScreen * factorHeightParent;
+
     return Container(
       child: Column(
         children: <Widget>[
-          HeaderWidget(
-              "Calculator", "Weight Diary", "./calculator", PATH_IC_PLUS, () {
+          HeaderWidget(titleHeader, descTitle, "./calculator", pathIcPlus, () {
             print("Press button function");
           }),
           _contentBody(context)
@@ -37,15 +39,12 @@ class DiaryScreen extends BaseScreen {
   }
 
   Widget _contentBody(BuildContext context) {
-    final double WIDTH_PARENT = widthScreen * 0.9;
-    final double HEIGHT_PARENT = heightScreen * 0.8;
-
     return Container(
       alignment: Alignment.topCenter,
-      height: HEIGHT_PARENT,
-      width: WIDTH_PARENT,
+      height: heightScreen * factorHeightParentContentBody,
+      width: widthScreen * factorWidthParentContentBody,
       padding: EdgeInsets.all(0),
-      decoration: BoxDecoration(color: Colors.red),
+      decoration: BoxDecoration(color: colorBrContentBody),
       child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -63,9 +62,9 @@ class DiaryScreen extends BaseScreen {
   /// Calendar
   Widget _calendar(BuildContext context) {
     return Container(
-      width: widthScreen * 0.9,
-      height: heightScreen * 0.1,
-      decoration: BoxDecoration(color: Colors.red),
+      width: widthScreen * factorWidthCalendar,
+      height: heightScreen * factorHeightCalendar,
+      decoration: BoxDecoration(color: colorBrCalendar),
       child: Row(
         children: <Widget>[
           // Left
@@ -85,16 +84,17 @@ class DiaryScreen extends BaseScreen {
           // Title
           Container(
             height: (heightScreen * 0.1) * 0.5,
-            alignment: Alignment.centerLeft,
-            decoration: BoxDecoration(color: Colors.purple),
-            child: Text("Title"),
+            alignment: Alignment.bottomLeft,
+            decoration: BoxDecoration(color: colorBrLeftCalendar),
+            child: Text(statistic,
+                style: TextStyle(color: txtColorTitleLeftCalendar)),
           ),
           // Content
           Container(
             height: (heightScreen * 0.1) * 0.5,
             alignment: Alignment.centerLeft,
-            decoration: BoxDecoration(color: Colors.blue),
-            child: Text("Content"),
+            decoration: BoxDecoration(color: colorBrContentLeftCalendar),
+            child: Text(currentDate, style: TextStyle(color: colorTxtKg)),
           )
         ],
       ),
@@ -109,38 +109,34 @@ class DiaryScreen extends BaseScreen {
           // Top line
           Container(
             height: (heightScreen * 0.1) * 0.5,
-            alignment: Alignment.centerLeft,
-            decoration: BoxDecoration(color: Colors.red),
+            decoration: BoxDecoration(color: colorBrTopLineRightCalendar),
             child: Row(
               children: <Widget>[
                 // Month
                 Expanded(
                   flex: 1,
                   child: Container(
-                    decoration: BoxDecoration(color: Colors.pink),
-                    child: Center(
-                      child: Text("month"),
-                    ),
+                    alignment: Alignment.bottomCenter,
+                    decoration: BoxDecoration(color: colorBrMonth),
+                    child: Text(labelMonth),
                   ),
                 ),
                 // Year
                 Expanded(
                   flex: 1,
                   child: Container(
-                    decoration: BoxDecoration(color: Colors.blue),
-                    child: Center(
-                      child: Text("year"),
-                    ),
+                    alignment: Alignment.bottomCenter,
+                    decoration: BoxDecoration(color: colorBrYear),
+                    child: Text(labelYear),
                   ),
                 ),
                 // All
                 Expanded(
                   flex: 1,
                   child: Container(
-                    decoration: BoxDecoration(color: Colors.white),
-                    child: Center(
-                      child: Text("all"),
-                    ),
+                    alignment: Alignment.bottomCenter,
+                    decoration: BoxDecoration(color: colorBrAll),
+                    child: Text(labelAll),
                   ),
                 ),
               ],
@@ -150,7 +146,7 @@ class DiaryScreen extends BaseScreen {
           Container(
             height: (heightScreen * 0.1) * 0.5,
             alignment: Alignment.centerLeft,
-            decoration: BoxDecoration(color: Colors.yellow),
+            decoration: BoxDecoration(color: colorBrBottomLine),
           )
         ],
       ),
@@ -160,10 +156,10 @@ class DiaryScreen extends BaseScreen {
   /// Chart
   Widget _chart(BuildContext context) {
     return Container(
-      width: widthScreen * 0.9,
-      height: heightScreen * 0.2,
+      width: widthScreen * factorWidthChart,
+      height: heightScreen * factorHeightChart,
       alignment: Alignment.center,
-      decoration: BoxDecoration(color: Colors.pink),
+      decoration: BoxDecoration(color: colorBrChart),
     );
   }
 
@@ -171,28 +167,24 @@ class DiaryScreen extends BaseScreen {
   /// Description
   Widget _noteDesc(BuildContext context) {
     return Container(
-        width: widthScreen * 0.9,
-        height: heightScreen * 0.15,
-        decoration: BoxDecoration(color: Colors.purple));
+        width: widthScreen * factorWidthNoteDesc,
+        height: heightScreen * factorHeightNoteDesc,
+        decoration: BoxDecoration(color: colorBrNoteDesc));
   }
 
   ///
   /// Goal and current weight
   Widget _goalsAndCurrent(BuildContext context) {
-    final String PATH_BR_GOAL = "lib/src/assets/images/br_goal.png";
-    final String PATH_BR_CURRENT = "lib/src/assets/images/br_current.png";
-    final double WIDTH_PARENT = widthScreen * 0.9;
-    final double HEIGHT_PARENT = heightScreen * 0.2;
     return Container(
-      decoration: BoxDecoration(color: Colors.yellow),
-      width: WIDTH_PARENT,
-      height: HEIGHT_PARENT,
+      decoration: BoxDecoration(color: colorBrGoalAndCurrent),
+      width: widthParent,
+      height: heightParent,
       child: Row(
         children: <Widget>[
           // Left
-          _goalView(context, PATH_BR_GOAL),
+          _goalView(context, pathBrGoal),
           // Right
-          _currentView(context, PATH_BR_CURRENT)
+          _currentView(context, pathBrCurrent)
         ],
       ),
     );
@@ -224,7 +216,7 @@ class DiaryScreen extends BaseScreen {
       children: <Widget>[
         Container(
           margin: EdgeInsets.only(top: 10, left: 20, bottom: 0, right: 0),
-          child: Text("GOAL", style: TextStyle(color: colorTxtGoalAndValue)),
+          child: Text(lblGoal, style: TextStyle(color: colorTxtGoalAndValue)),
         ),
       ],
     );
@@ -239,11 +231,11 @@ class DiaryScreen extends BaseScreen {
           alignment: Alignment.center,
           // decoration: BoxDecoration(color: Colors.blue),
           child: Text("79",
-              style: TextStyle(color: colorTxtGoalAndValue, fontSize: 40)),
+              style: TextStyle(color: colorTxtGoalAndValue, fontSize: fontSizeValueOfWeight)),
         ),
         Container(
           alignment: Alignment.center,
-          color: Colors.red,
+          // color: Colors.red,
           child: Text("kg", style: TextStyle(color: colorTxtKg)),
         ),
       ],
@@ -308,12 +300,12 @@ class DiaryScreen extends BaseScreen {
         children: <Widget>[
           // current
           Text(
-            "Current",
+            lblCurrent,
             style: TextStyle(color: Colors.white),
           ),
           // weight
           Text(
-            "Weight",
+            lblWeight,
             style: TextStyle(color: Colors.white),
           ),
         ],
@@ -374,7 +366,6 @@ class DiaryScreen extends BaseScreen {
       "unit": "kg",
       "descNumber": "32"
     }),
-    
   ];
 
   /// Diary list
@@ -482,7 +473,7 @@ class DiaryScreen extends BaseScreen {
     String path = "";
     // 1 is up
     // 0 is down
-    (_path == 1) ? path = pathArrowUp : path = pathArrowDown;
+    (_path == 1) ? path = pathIcArrowUp : path = pathIcArrowDown;
 
     return Expanded(
       flex: 1,
@@ -501,7 +492,7 @@ class DiaryScreen extends BaseScreen {
                     flex: 1,
                     child: Container(
                         padding: EdgeInsets.all(3),
-                        decoration: BoxDecoration(color: Colors.purple),
+                        // decoration: BoxDecoration(color: colorBrIcArrow),
                         child: Image.asset(path)),
                   ),
                   // Value factor
@@ -509,9 +500,9 @@ class DiaryScreen extends BaseScreen {
                     flex: 1,
                     child: Container(
                       alignment: Alignment.centerRight,
-                      decoration: BoxDecoration(
-                        color: Colors.green,
-                      ),
+                      // decoration: BoxDecoration(
+                      //   color: Colors.green,
+                      // ),
                       child: _textFirstLine(_value),
                     ),
                   ),
@@ -530,34 +521,9 @@ class DiaryScreen extends BaseScreen {
 
   Widget _textFirstLine(String content) {
     return Text(content,
-        style: TextStyle(fontSize: txtSizeFirstLine, color: Colors.white, fontWeight: FontWeight.w400));
-  }
-}
-
-class ModelItemDiary {
-  String day;
-  String dateAndMonth;
-  double weightValue;
-  String unit;
-  int indexIc;
-  String descNumber;
-
-  ModelItemDiary(
-      {this.day,
-      this.dateAndMonth,
-      this.weightValue,
-      this.unit,
-      this.indexIc,
-      this.descNumber});
-
-  factory ModelItemDiary.fromJson(Map<String, dynamic> json) {
-    return ModelItemDiary(
-      day: json['day'],
-      dateAndMonth: json['dateAndMonth'],
-      weightValue: json['weightValue'],
-      unit: json['unit'],
-      indexIc: json['indexIc'],
-      descNumber: json['descNumber'],
-    );
+        style: TextStyle(
+            fontSize: txtSizeFirstLine,
+            color: colorTxtFirstLine,
+            fontWeight: fntWeightFirstLine));
   }
 }

@@ -30,8 +30,8 @@ class HeaderWidget extends StatelessWidget {
         // decoration: BoxDecoration(color: Colors.red),
         margin: EdgeInsets.only(top: statusBarHeight),
         decoration: BoxDecoration(
-          // color: Colors.blue
-          ),
+            // color: Colors.blue
+            ),
         child: Row(
           children: <Widget>[
             /// Left
@@ -54,8 +54,8 @@ class HeaderWidget extends StatelessWidget {
       width: widthScreen * 0.7,
       alignment: Alignment.centerLeft,
       decoration: BoxDecoration(
-        // color: Colors.yellow,
-      ),
+          // color: Colors.yellow,
+          ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -73,8 +73,8 @@ class HeaderWidget extends StatelessWidget {
       width: widthScreen * 0.7,
       height: heightScreen * 0.5,
       decoration: BoxDecoration(
-        // color: Colors.purple
-        ),
+          // color: Colors.purple
+          ),
       child: Row(
         children: <Widget>[
           // Button
@@ -102,8 +102,8 @@ class HeaderWidget extends StatelessWidget {
       width: widthScreen * 0.7,
       alignment: Alignment.centerLeft,
       decoration: BoxDecoration(
-        // color: Colors.pink,
-      ),
+          // color: Colors.pink,
+          ),
       child: Text(
         content,
         style: TextStyle(
@@ -122,8 +122,8 @@ class HeaderWidget extends StatelessWidget {
       width: widthScreen * 0.3,
       alignment: Alignment.centerRight,
       decoration: BoxDecoration(
-        // color: Colors.blue,
-      ),
+          // color: Colors.blue,
+          ),
       // color: Colors.transparent,
       child: GestureDetector(
         onTap: behaviorWhenPressButton,
@@ -138,7 +138,7 @@ class HeaderWidget extends StatelessWidget {
           //   iconFunctionButton,
           //   fit: BoxFit.fill,
           // ),
-        ), 
+        ),
       ),
     );
   }
