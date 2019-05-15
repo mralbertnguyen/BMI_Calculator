@@ -8,15 +8,15 @@ class HeaderWidget extends StatelessWidget {
   /// Required parameters
   final String title;
   final String content;
-  final String nameScreenBack;
   final String iconFunctionButton;
   final Function behaviorWhenPressButton;
+  Function actionWhenPressBackIcon;
 
   double widthScreen;
   double heightScreen;
 
-  HeaderWidget(this.title, this.content, this.nameScreenBack,
-      this.iconFunctionButton, this.behaviorWhenPressButton);
+  HeaderWidget(this.title, this.content,
+      this.iconFunctionButton, this.behaviorWhenPressButton, this.actionWhenPressBackIcon);
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +82,7 @@ class HeaderWidget extends StatelessWidget {
             onTap: () {
               /// pressed back button
               ///  - back to screen with screen name
-              Navigator.of(context).pushReplacementNamed(nameScreenBack);
+             actionWhenPressBackIcon();
             },
             child: Image.asset(PATH_IC_BACK),
           ),

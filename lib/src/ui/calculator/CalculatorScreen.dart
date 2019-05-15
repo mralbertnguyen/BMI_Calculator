@@ -15,10 +15,8 @@ class CalculatorScreen extends BaseScreen {
       child: Column(
         children: <Widget>[
           /// Header
-          HeaderWidget("Weight Diary", "BMI Calculator", "./diary",
-              PATH_IC_REFRESH, () {
-            print("Press button function");
-          }),
+          HeaderWidget("Weight Diary", "BMI Calculator", PATH_IC_REFRESH,
+              _pressButtonFunction(), _pushToDiaryScreen(context)),
 
           /// Form choose male or female
           _formSetMaleOrFemal(context),
@@ -31,6 +29,16 @@ class CalculatorScreen extends BaseScreen {
         ],
       ),
     );
+  }
+
+  /// Function push to Diary screen
+  _pushToDiaryScreen(BuildContext context) {
+    final String _screenName = './diary';
+    pushReplaceScreen(context, _screenName);
+  }
+
+  _pressButtonFunction() {
+    print("Press button function");
   }
 
   /// Form set Male or Female
@@ -110,8 +118,8 @@ class CalculatorScreen extends BaseScreen {
                           height: HEIGHT_ITEM * 0.3,
                           width: HEIGHT_ITEM * 0.3,
                           decoration: BoxDecoration(
-                            // color: Colors.pink
-                            ),
+                              // color: Colors.pink
+                              ),
                           child: new Image.asset(
                             path,
                             color: Colors.white,
@@ -156,8 +164,8 @@ class CalculatorScreen extends BaseScreen {
       height: HEIGHT_LIST,
       width: WIDGHT_LIST,
       decoration: new BoxDecoration(
-        // color: Colors.purpleAccent
-      ),
+          // color: Colors.purpleAccent
+          ),
       child: ListView.builder(
         itemCount: itemList.length,
         padding: EdgeInsets.all(0),
@@ -174,8 +182,7 @@ class CalculatorScreen extends BaseScreen {
     final Color colorsBrItemRight = Color.fromARGB(47, 63, 75, 100);
     final String PATH_IC_MINUS = "lib/src/assets/images/btn_minus.png";
     final String PATH_IC_PLUS = "lib/src/assets/images/btn_plus.png";
-    final COLOR_TXT_DESC =  const Color.fromARGB(114, 144, 157, 100);
-
+    final COLOR_TXT_DESC = const Color.fromARGB(114, 144, 157, 100);
 
     return Card(
       color: Colors.transparent,
@@ -183,9 +190,7 @@ class CalculatorScreen extends BaseScreen {
       child: Container(
         height: _height * 0.23,
         width: _width,
-        decoration: BoxDecoration(
-          color: Colors.transparent
-        ),
+        decoration: BoxDecoration(color: Colors.transparent),
         child: Row(
           children: <Widget>[
             /// Left
@@ -197,8 +202,8 @@ class CalculatorScreen extends BaseScreen {
                   Container(
                     margin: EdgeInsets.all(5),
                     decoration: BoxDecoration(
-                      // color: Colors.blueGrey
-                    ),
+                        // color: Colors.blueGrey
+                        ),
                     child: Text(
                       data.label,
                       style: TextStyle(
@@ -210,8 +215,8 @@ class CalculatorScreen extends BaseScreen {
                   Container(
                     margin: EdgeInsets.all(5),
                     decoration: BoxDecoration(
-                      // color: Colors.lightBlue
-                    ),
+                        // color: Colors.lightBlue
+                        ),
                     child: Text(
                       data.descLabel,
                       style: TextStyle(
@@ -222,6 +227,7 @@ class CalculatorScreen extends BaseScreen {
                 ],
               ),
             ),
+
             /// Right
             Expanded(
               flex: 1,
@@ -331,7 +337,7 @@ class CalculatorScreen extends BaseScreen {
         height: heightViewButton,
         decoration: new BoxDecoration(
             // color: Colors.red,
-             borderRadius: BorderRadius.circular(31)),
+            borderRadius: BorderRadius.circular(31)),
         child: Stack(
           alignment: Alignment.center,
           children: <Widget>[
