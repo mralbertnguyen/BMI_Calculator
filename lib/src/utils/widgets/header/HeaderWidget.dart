@@ -9,14 +9,15 @@ class HeaderWidget extends StatelessWidget {
   final String title;
   final String content;
   final String iconFunctionButton;
+
   final Function behaviorWhenPressButton;
-  Function actionWhenPressBackIcon;
+  final Function actionWhenPressBackIcon;
 
   double widthScreen;
   double heightScreen;
 
-  HeaderWidget(this.title, this.content,
-      this.iconFunctionButton, this.behaviorWhenPressButton, this.actionWhenPressBackIcon);
+  HeaderWidget(this.title, this.content, this.iconFunctionButton,
+      this.behaviorWhenPressButton, this.actionWhenPressBackIcon);
 
   @override
   Widget build(BuildContext context) {
@@ -70,30 +71,25 @@ class HeaderWidget extends StatelessWidget {
 
   Widget _rowButtonAndLabel(BuildContext context) {
     return Container(
-      width: widthScreen * 0.7,
-      height: heightScreen * 0.5,
-      decoration: BoxDecoration(
-          // color: Colors.purple
+        width: widthScreen * 0.7,
+        height: heightScreen * 0.5,
+        decoration: BoxDecoration(
+            // color: Colors.purple
+            ),
+        child: InkWell(
+          onTap: actionWhenPressBackIcon,
+          child: Row(
+            children: <Widget>[
+              // Button
+              Image.asset(PATH_IC_BACK),
+              // Label
+              Text(
+                title,
+                style: TextStyle(color: COLOR_BACK),
+              )
+            ],
           ),
-      child: Row(
-        children: <Widget>[
-          // Button
-          new GestureDetector(
-            onTap: () {
-              /// pressed back button
-              ///  - back to screen with screen name
-             actionWhenPressBackIcon();
-            },
-            child: Image.asset(PATH_IC_BACK),
-          ),
-          // Label
-          new Text(
-            title,
-            style: TextStyle(color: COLOR_BACK),
-          )
-        ],
-      ),
-    );
+        ));
   }
 
   Widget _rowContent() {
@@ -120,24 +116,24 @@ class HeaderWidget extends StatelessWidget {
     return Container(
       height: heightScreen,
       width: widthScreen * 0.3,
-      alignment: Alignment.centerRight,
+      alignment: Alignment.center,
       decoration: BoxDecoration(
           // color: Colors.blue,
           ),
       // color: Colors.transparent,
-      child: GestureDetector(
-        onTap: behaviorWhenPressButton,
-        child: Container(
-          height: heightScreen * 0.8,
-          width: heightScreen * 0.8,
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: ExactAssetImage(iconFunctionButton),
-                  fit: BoxFit.fill)),
-          // child: Image.asset(
-          //   iconFunctionButton,
-          //   fit: BoxFit.fill,
-          // ),
+      child: Container(
+        margin: EdgeInsets.all(5),
+        height: heightScreen * 0.8,
+        width: heightScreen * 0.8,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: InkWell(
+          onTap: behaviorWhenPressButton,
+          child: Image.asset(
+            iconFunctionButton,
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );

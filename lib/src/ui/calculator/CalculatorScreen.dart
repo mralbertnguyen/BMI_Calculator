@@ -16,7 +16,9 @@ class CalculatorScreen extends BaseScreen {
         children: <Widget>[
           /// Header
           HeaderWidget("Weight Diary", "BMI Calculator", PATH_IC_REFRESH,
-              _pressButtonFunction(), _pushToDiaryScreen(context)),
+              this._pressButtonFunction, () {
+            _pushToDiaryScreen(context);
+          }),
 
           /// Form choose male or female
           _formSetMaleOrFemal(context),
@@ -33,11 +35,12 @@ class CalculatorScreen extends BaseScreen {
 
   /// Function push to Diary screen
   _pushToDiaryScreen(BuildContext context) {
+    print("Press back function");
     final String _screenName = './diary';
-    pushReplaceScreen(context, _screenName);
+    pushScreen(context, _screenName);
   }
 
-  _pressButtonFunction() {
+  void _pressButtonFunction() {
     print("Press button function");
   }
 

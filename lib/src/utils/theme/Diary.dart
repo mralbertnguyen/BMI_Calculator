@@ -16,27 +16,33 @@ final Color colorBrValueViewItem = Colors.transparent;
 final Color colorIconViewItem = Colors.transparent;
 final Color txtColorTitleLeftCalendar = Colors.white;
 
-
 final Color colorTxtGoalAndValue = Color.fromARGB(100,40, 54, 65 );
 final Color colorTxtMain = Color.fromARGB(100,114, 144, 157);
 final Color colorBrContentBody = Colors.transparent;
 
 final Color colorBrChart = Colors.transparent;
 
-final Color colorBrNoteDesc = Colors.transparent;
+final Color colorBrNoteDesc = Color.fromARGB(100, 48, 62, 75);
 
 final Color colorBrGoalAndCurrent = Colors.transparent;
 
 final Color colorTxtFirstLine = Colors.white;
 
+final Color colorDescYourWeight = Color.fromARGB(100,160,212,250);
+final Color colorDescDesireddWeight = Color.fromARGB(100,0,232,198);
+final Color colorDescUnderWeight = Color.fromARGB(100,251,192,45);
+final Color colorDescOverWeight  = Color.fromARGB(100,255,112,67);
+
+
 final double fontSizeValueOfWeight = 40.0;
+
 
 /// Widths - heights, factors, paddings, margins
 final double factorWidthParent = 0.9;
 final double factorHeightParent = 0.2;
 
 final double factorWidthParentContentBody = 0.9;
-final double factorHeightParentContentBody = 0.8;
+final double factorHeightParentContentBody = 0.85;
 final double factorHeightCalendar = 0.1;
 final double factorWidthCalendar = 0.9;
 
@@ -44,14 +50,16 @@ final double factorWidthChart = 0.9;
 final double factorHeightChart = 0.2;
 
 final double factorWidthNoteDesc = 0.9;
-final double factorHeightNoteDesc = 0.15;
+final double factorHeightNoteDesc = 0.1;
 
 final double paddignParentScreen = 30;
 
 final fntWeightFirstLine = FontWeight.w400;
 
-final double paddingTopGoalAndCurrent = 15;
-final double paddingLeftGoalAndCurrent = 30;
+final double paddingTopGoalAndCurrent = 10;
+final double paddingLeftGoalAndCurrent = 45;
+
+final double borderRadiusNoteDescView = 20.0;
 
 /// PATH of images and icons
 /// [Backgrounds]
