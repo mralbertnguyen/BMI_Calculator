@@ -6,11 +6,55 @@ import 'package:bmicalculator/src/utils/widgets/index.dart';
 //Models
 import 'package:bmicalculator/src/models/ModelItemList.dart';
 
-class CalculatorScreen extends BaseScreen {
-  Size size;
+class CalculatorScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Scaffold(
+      body: Container(
+        decoration: BoxDecoration(
+        image: DecorationImage(image: AssetImage(PATH_BR), fit: BoxFit.cover)),
+        child: CalculatorStateful(),
+      ),
+    );
+  }
+}
+
+class CalculatorStateful extends StatefulWidget {
+  CalculatorStateful({Key key}) : super(key: key);
 
   @override
-  Widget onInitBody(BuildContext context) {
+  CalculatorScreenState createState() => new CalculatorScreenState();
+}
+
+class CalculatorScreenState extends State<CalculatorStateful> {
+  Size size;
+
+  /// Data for list
+  List<ModelItemList> itemList = new List<ModelItemList>();
+
+  //  itemList =
+  //    ModelItemList.fromJson(),
+  //
+  //   ,
+  // };
+
+  @override
+  void initState() {
+    // Init default value for list
+    itemList.add(
+        ModelItemList.fromJson({"label": "cm", "desc": "ft", "value": 170.0}));
+    itemList.add(
+        ModelItemList.fromJson({"label": "kg", "desc": "lb", "value": 75.0}));
+    itemList.add(
+        ModelItemList.fromJson({"label": "goal", "desc": "", "value": 79.0}));
+    itemList.add(
+        ModelItemList.fromJson({"label": "age", "desc": "", "value": 21.0}));
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       child: Column(
         children: <Widget>[
@@ -40,6 +84,10 @@ class CalculatorScreen extends BaseScreen {
     pushScreen(context, _screenName);
   }
 
+  pushScreen(BuildContext context, String screenName) async {
+    return await Navigator.pushNamed(context, screenName);
+  }
+
   void _pressButtonFunction() {
     print("Press button function");
   }
@@ -62,12 +110,12 @@ class CalculatorScreen extends BaseScreen {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           /// Left - Male
-          _itemFormInActive(
-              context, Alignment.centerLeft, 0, 10, PATH_IC_MALE, "MALE"),
+          _itemFormInActive(context, Alignment.centerLeft, 0, 10, PATH_IC_MALE,
+              "MALE", 0.2, true),
 
           /// Rigth - Female
-          _itemFormInActive(
-              context, Alignment.centerLeft, 10, 0, PATH_IC_FEMALE, "FEMALE")
+          _itemFormInActive(context, Alignment.centerLeft, 10, 0,
+              PATH_IC_FEMALE, "FEMALE", 1, false)
         ],
       ),
     );
@@ -80,34 +128,42 @@ class CalculatorScreen extends BaseScreen {
   /// [double] margin right
   /// [String] path icon
   /// [String] text
-  Widget _itemFormInActive(BuildContext context, Alignment aligment,
-      double marginLeft, double marginRight, String path, String text) {
+
+  bool isMale = true;
+  bool isFeMale = false;
+  Widget _itemFormInActive(
+      BuildContext context,
+      Alignment aligment,
+      double marginLeft,
+      double marginRight,
+      String path,
+      String text,
+      double opacity,
+      bool isMan) {
     double WIDTH_ITEM = MediaQuery.of(context).size.height * 0.2;
     double HEIGHT_ITEM = MediaQuery.of(context).size.height * 0.2;
+    final Color mainColor = Color.fromARGB(100, 114, 144, 157);
     double MARGIN_ITEM = 10.0;
     return InkWell(
       onTap: () {
-        //Pressed choose item
-        print("Choose sex");
+        _setGender(isMan);
       },
       child: Opacity(
-        opacity: 0.9,
+        opacity: opacity,
         child: new Container(
           height: HEIGHT_ITEM,
           width: WIDTH_ITEM,
           decoration: new BoxDecoration(
-              // color: Colors.black,
-              ),
+              color: mainColor, borderRadius: BorderRadius.circular(20)),
           child: new Row(
             children: <Widget>[
               new Expanded(
                 flex: 1,
                 child: Container(
                   margin: new EdgeInsets.only(
-                      top: MARGIN_ITEM,
-                      bottom: MARGIN_ITEM,
-                      left: marginLeft,
-                      right: marginRight),
+                    top: MARGIN_ITEM,
+                    bottom: MARGIN_ITEM,
+                  ),
                   alignment: Alignment.center,
                   decoration: new BoxDecoration(
                       // color: Colors.blue,
@@ -149,14 +205,20 @@ class CalculatorScreen extends BaseScreen {
     );
   }
 
+  /// Function handle choose gender
+  _setGender(bool _isMan) {
+    if (!_isMan) {
+      isMale = false;
+      isFeMale = true;
+    } else {
+      isMale = true;
+      isFeMale = false;
+    }
+    print("Male is ${isMale}");
+    print("Female is ${isFeMale}");
+  }
+
   /// List view item's infomations
-  /// Data for list
-  List<ModelItemList> itemList = [
-    ModelItemList.fromJson({"label": "cm", "desc": "ft", "value": "170"}),
-    ModelItemList.fromJson({"label": "kg", "desc": "lb", "value": "75.0"}),
-    ModelItemList.fromJson({"label": "goal", "desc": "", "value": "79"}),
-    ModelItemList.fromJson({"label": "age", "desc": "", "value": "21"})
-  ];
 
   ///
   /// List basic infomations of user
@@ -174,14 +236,14 @@ class CalculatorScreen extends BaseScreen {
         padding: EdgeInsets.all(0),
         itemBuilder: (BuildContext context, int index) {
           return _itemListInfo(
-              context, itemList[index], HEIGHT_LIST, WIDGHT_LIST);
+              context, itemList[index], HEIGHT_LIST, WIDGHT_LIST, index);
         },
       ),
     );
   }
 
-  Widget _itemListInfo(
-      BuildContext context, ModelItemList data, double _height, double _width) {
+  Widget _itemListInfo(BuildContext context, ModelItemList data, double _height,
+      double _width, int index) {
     final Color colorsBrItemRight = Color.fromARGB(47, 63, 75, 100);
     final String PATH_IC_MINUS = "lib/src/assets/images/btn_minus.png";
     final String PATH_IC_PLUS = "lib/src/assets/images/btn_plus.png";
@@ -242,7 +304,7 @@ class CalculatorScreen extends BaseScreen {
                     decoration: BoxDecoration(
                         color: colorsBrItemRight,
                         borderRadius: BorderRadius.all(Radius.circular(50))),
-                    child: _numberData(data.value),
+                    child: _numberData(data.value.toString()),
                   ),
 
                   /// Layer 2 - (+ -) buttons
@@ -254,9 +316,9 @@ class CalculatorScreen extends BaseScreen {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           // - button
-                          _buttonItemsList(_minusData, PATH_IC_MINUS),
+                          _buttonItemsList(index, 0, PATH_IC_MINUS),
                           // + button
-                          _buttonItemsList(_plusData, PATH_IC_PLUS)
+                          _buttonItemsList(index, 1, PATH_IC_PLUS)
                         ],
                       )),
                 ],
@@ -268,10 +330,19 @@ class CalculatorScreen extends BaseScreen {
     );
   }
 
-  Widget _buttonItemsList(Function _function, String pathBr) {
+  /// Button have two type
+  /// minus button and plus button
+  /// @required three parameters are:
+  /// - kind of button minues (0) or plus (1)
+  /// - index of button (int)
+  /// - bath of img for button
+
+  Widget _buttonItemsList(int index, int kind, String pathBr) {
     return InkWell(
       onTap: () {
-        _function();
+        String will = "";
+        (kind == 0) ? _minusData(index) : _plusData(index);
+        print("Value ${itemList[index].value} will be ${will}");
       },
       child: Container(
         width: 26,
@@ -293,36 +364,17 @@ class CalculatorScreen extends BaseScreen {
   }
 
   /// Functions for handle actions when pressed button - / +
-  _minusData() {
-    print("Press minus data function");
+  _minusData(int index) {
+    setState(() {
+      itemList[index].value -= 1;
+    });
   }
 
-  _plusData() {
-    print("Press plus data function");
+  _plusData(int index) {
+    setState(() {
+      itemList[index].value += 1;
+    });
   }
-
-  // Widget _itemListInfoLeft(BuildContext context, ModelItemList data) {
-  //   double WIDTH_ITEM = MediaQuery.of(context).size.height * 0.2;
-  //   double HEIGHT_ITEM = MediaQuery.of(context).size.height * 0.2;
-  //   return new Container(
-  //     height: HEIGHT_ITEM,
-  //     width:HEIGHT_ITEM ,
-  //     decoration: BoxDecoration(color: Colors.red),
-  //     child: new Column(
-  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //       children: <Widget>[
-  //         // Title
-  //         new Text(
-  //           data.label
-  //         ),
-  //         // Desc
-  //         new Text(
-  //           data.descLabel
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
 
   ///
   /// Button calculator

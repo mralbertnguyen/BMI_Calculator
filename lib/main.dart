@@ -9,7 +9,7 @@ void main() => runApp(
   
   MaterialApp(
     debugShowCheckedModeBanner: false,
-    initialRoute: './diary',
+    initialRoute: './calculator',
     routes: {
       './splash' : (context)=> SplashScreen(),
       './calculator' : (context)=> CalculatorScreen(),

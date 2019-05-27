@@ -32,7 +32,10 @@ class ChartState extends State<ChartStatefullWidget> {
     70.0,
     76.0,
     79.0,
-    81.0
+    81.0,
+    79.0,
+    76.0,
+    79.0,
   ];
 
   @override

@@ -1,7 +1,7 @@
 class ModelItemList {
-  final String label;
-  final String descLabel;
-  final String value;
+   String label;
+   String descLabel;
+   double value;
 
   ModelItemList.fromJson(Map<String, dynamic> json)
       : label = json['label'],
