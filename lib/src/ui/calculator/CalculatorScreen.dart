@@ -13,7 +13,8 @@ class CalculatorScreen extends StatelessWidget {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-        image: DecorationImage(image: AssetImage(PATH_BR), fit: BoxFit.cover)),
+            image:
+                DecorationImage(image: AssetImage(PATH_BR), fit: BoxFit.cover)),
         child: CalculatorStateful(),
       ),
     );
@@ -33,11 +34,7 @@ class CalculatorScreenState extends State<CalculatorStateful> {
   /// Data for list
   List<ModelItemList> itemList = new List<ModelItemList>();
 
-  //  itemList =
-  //    ModelItemList.fromJson(),
-  //
-  //   ,
-  // };
+  /// Set default is Male
 
   @override
   void initState() {
@@ -92,6 +89,12 @@ class CalculatorScreenState extends State<CalculatorStateful> {
     print("Press button function");
   }
 
+  bool isMale = true;
+  bool isFeMale = false;
+
+  double maleO = 1;
+  double femaleO = 0.2;
+
   /// Form set Male or Female
   Widget _formSetMaleOrFemal(BuildContext context) {
     double HEIGHT_FORM = MediaQuery.of(context).size.height * 0.2;
@@ -110,12 +113,16 @@ class CalculatorScreenState extends State<CalculatorStateful> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           /// Left - Male
-          _itemFormInActive(context, Alignment.centerLeft, 0, 10, PATH_IC_MALE,
-              "MALE", 0.2, true),
+          IgnorePointer(
+              ignoring: isMale,
+              child: _itemFormInActive(context, Alignment.centerLeft, 0, 10,
+                  PATH_IC_MALE, "MALE", maleO, true)),
 
           /// Rigth - Female
-          _itemFormInActive(context, Alignment.centerLeft, 10, 0,
-              PATH_IC_FEMALE, "FEMALE", 1, false)
+          IgnorePointer(
+              ignoring: isFeMale,
+              child: _itemFormInActive(context, Alignment.centerLeft, 10, 0,
+                  PATH_IC_FEMALE, "FEMALE", femaleO, false))
         ],
       ),
     );
@@ -129,8 +136,6 @@ class CalculatorScreenState extends State<CalculatorStateful> {
   /// [String] path icon
   /// [String] text
 
-  bool isMale = true;
-  bool isFeMale = false;
   Widget _itemFormInActive(
       BuildContext context,
       Alignment aligment,
@@ -208,11 +213,19 @@ class CalculatorScreenState extends State<CalculatorStateful> {
   /// Function handle choose gender
   _setGender(bool _isMan) {
     if (!_isMan) {
-      isMale = false;
-      isFeMale = true;
+      setState(() {
+        isMale = false;
+        isFeMale = true;
+        maleO = 0.2;
+        femaleO = 1;
+      });
     } else {
-      isMale = true;
-      isFeMale = false;
+      setState(() {
+        isMale = true;
+        isFeMale = false;
+        maleO = 1;
+        femaleO = 0.2;
+      });
     }
     print("Male is ${isMale}");
     print("Female is ${isFeMale}");
